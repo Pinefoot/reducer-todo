@@ -2,6 +2,8 @@ import React, {useReducer, useState} from 'react';
 import {reducer, initialState} from '../reducers/Reducer';
 import {addTask, removeTask, toggleTask} from './actions/Actions';
 import Todos from '../components/Todos';
+import {Button, Form, Card, Input} from 'reactstrap';
+
 
 
 
@@ -56,7 +58,21 @@ const toggleChange = task =>{
 
     return(
         
-        <div>
+        <Card >
+        
+        
+        <Form className="formControl">
+            <Input className="todoInput"
+            type = 'text'
+            name='item' 
+            placeholder='Add a new Task'
+            value ={newTaskInput.item}
+            onChange = {handleChange}/>
+            <Button  outline color="success" variant="contained" color="primary" onClick={event=>{addNewTask(event)}}>Add Task!</Button>
+            <Button outline color="warning" onClick={event=>{removeComplete(event)}}>Remove Completed Task!</Button>
+            
+
+        </Form>  
         {state.todoList.map(t =>{
             return <Todos
             key={t.id}
@@ -65,21 +81,8 @@ const toggleChange = task =>{
             toDoTask={t}
             
                 />
-        })}
-        
-        <form>
-            <input 
-            type = 'text'
-            name='item' 
-            placeholder='Add a new Task'
-            value ={newTaskInput.item}
-            onChange = {handleChange}/>
-            <button onClick={event=>{addNewTask(event)}}>Add Task!</button>
-            <button onClick={event=>{removeComplete(event)}}>Remove Completed Task!</button>
-            
-
-        </form>   
-        </div> 
+        })} 
+        </Card> 
     )
 }
 export default TodoList;
