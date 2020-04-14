@@ -28,8 +28,8 @@ const addNewTask = event =>{
     })
 }//submitsnewTask
 
-const removeComplete=task=>{
-    //event.preventDefault();
+const removeComplete=(event,task)=>{
+    event.preventDefault();
     dispatch(removeTask(task))
   }//removesItem
 
